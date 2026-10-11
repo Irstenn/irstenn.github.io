@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Irstenn Bakambis Ngongo</title>
+<meta name="description" content="Portfolio d’Irstenn Bakambis Ngongo, Data Scientist : Data & IA, Informatique & IT, Digitalisation, Géomatique. Disponible en CDI à partir d’avril 2027.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Irstenn Bakambis Ngongo · Data Scientist">
+<meta property="og:description" content="Portfolio d’Irstenn Bakambis Ngongo, Data Scientist : Data & IA, Informatique & IT, Digitalisation, Géomatique. Disponible en CDI à partir d’avril 2027.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b7a75'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' text-anchor='middle' fill='white'%3EIB%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: carte topographique — barre d'onglets fixe, panneaux en colonne de lecture avec légendes en marge façon cartouche */
+:root {
+  --bg: #eef2f1; --surface: #f8faf9; --ink: #12262b; --muted: #55686c; --line: #c9d4d3;
+  --accent: #0b7a75; --accent-soft: #d3ebe8; --contour: rgba(11,122,117,.22); --overlay: rgba(18,38,43,.45);
+  --c-ia: #7a4fd0; --c-data: #0b7a75; --c-geo: #3d7a1f; --c-auto: #b4570f; --c-web: #2b5fb8;
+  --danger: #b3261e;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1a1d; --surface: #132428; --ink: #e3ecea; --muted: #93a6a8; --line: #26393d;
+    --accent: #4cc7bd; --accent-soft: #163a3a; --contour: rgba(76,199,189,.18); --overlay: rgba(0,0,0,.6);
+    --c-ia: #b195f0; --c-data: #4cc7bd; --c-geo: #8fcf6a; --c-auto: #f0a05c; --c-web: #7fa8f0; --danger: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1a1d; --surface: #132428; --ink: #e3ecea; --muted: #93a6a8; --line: #26393d;
+  --accent: #4cc7bd; --accent-soft: #163a3a; --contour: rgba(76,199,189,.18); --overlay: rgba(0,0,0,.6);
+  --c-ia: #b195f0; --c-data: #4cc7bd; --c-geo: #8fcf6a; --c-auto: #f0a05c; --c-web: #7fa8f0; --danger: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
+@media (max-width: 480px) { .wrap { padding-inline: 16px; } }
+p { margin: 0; }
+h2, h3 { margin: 0; }
+
+/* Barre de navigation */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; gap: 16px; min-height: 60px; }
+.mark { font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.mark span { color: var(--accent); }
+.tabs { display: flex; gap: 2px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; white-space: nowrap; }
+.tab:hover { color: var(--ink); background: var(--accent-soft); }
+.tab[aria-current="page"] { color: var(--ink); background: var(--accent-soft); box-shadow: inset 0 -2px 0 var(--accent); }
+.tools { display: flex; gap: 6px; }
+.icon-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; height: 36px; min-width: 36px; padding: 0 10px; cursor: pointer; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: .05em; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.icon-btn:hover { border-color: var(--accent); }
+.icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+@media (max-width: 720px) {
+  .topbar .wrap { flex-wrap: wrap; gap: 6px 12px; padding-block: 8px; }
+  .tabs { order: 3; flex-basis: 100%; }
+  .tools { margin-left: auto; }
+}
+
+/* Panneaux */
+.panel[hidden] { display: none !important; }
+.panel { animation: fade .25s ease; }
+@keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* Accueil */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+#topo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-block: 64px 52px; }
+.coords { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.coords span::before { content: "◇ "; color: var(--accent); }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: .95; letter-spacing: -.03em; margin: 26px 0 0; text-wrap: balance; }
+h1 .last { display: block; color: var(--accent); }
+.domains { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.domains li { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px 7px 12px; border: 1px solid var(--line); border-left: 3px solid var(--d); border-radius: 6px; background: var(--surface); font-family: var(--f-mono); font-size: 13px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+.domains i { width: 7px; height: 7px; border-radius: 50%; background: var(--d); }
+@media (max-width: 480px) { .domains li { font-size: 12px; padding: 6px 10px; } }
+.role { font-family: var(--f-display); font-weight: 500; font-size: clamp(1.1rem, 2.6vw, 1.45rem); margin-top: 20px; max-width: 38ch; text-wrap: balance; }
+.status { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 8px 14px; border: 1px solid var(--accent); border-radius: 999px; background: var(--bg); font-size: 14px; font-weight: 500; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn { font: 500 15px var(--f-body); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.btn.ghost { background: var(--bg); color: var(--ink); border-color: var(--line); }
+.btn.accent { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.danger { background: transparent; border-color: var(--danger); color: var(--danger); }
+.btn:hover { opacity: .9; }
+.btn:disabled { opacity: .5; cursor: default; }
+
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.fig { padding: 22px 0; display: grid; gap: 2px; }
+.fig + .fig { border-left: 1px solid var(--line); padding-left: 20px; }
+.fig b { font-family: var(--f-display); font-size: 2.1rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.fig span { font-size: 13px; color: var(--muted); }
+@media (max-width: 600px) { .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fig:nth-child(3) { border-left: 0; padding-left: 0; } .fig:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+section:last-child { border-bottom: 0; }
+.sec { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; }
+@media (max-width: 760px) { .sec { grid-template-columns: minmax(0, 1fr); gap: 16px; } section { padding-block: 40px; } }
+.label { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); padding-top: 6px; }
+.label b { display: block; font-family: var(--f-display); font-size: 1.6rem; text-transform: none; letter-spacing: -.01em; color: var(--ink); margin-top: 4px; font-weight: 700; }
+.lead { font-size: 1.12rem; max-width: 62ch; }
+.lead.sub { margin-top: 14px; color: var(--muted); font-size: 1rem; }
+.head-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 20px; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Projets */
+.proj-tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; }
+.search { flex: 1 1 220px; min-width: 0; position: relative; }
+.search input { width: 100%; height: 40px; padding: 0 12px 0 36px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 15px var(--f-body); }
+.search svg { position: absolute; left: 11px; top: 12px; width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 2; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.chip-btn i { width: 8px; height: 8px; border-radius: 50%; background: var(--cat, var(--muted)); }
+.chip-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.active-tech { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); margin: -8px 0 18px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+.card { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; text-align: left; padding: 0; transition: border-color .15s, transform .15s; }
+.card:hover { border-color: var(--cat); transform: translateY(-2px); }
+.card.draft { opacity: .6; border-style: dashed; }
+.cover { position: relative; height: 120px; border-bottom: 1px solid var(--line); background: var(--bg); }
+.cover canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cover .cat { position: absolute; left: 12px; top: 12px; font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; padding: 3px 8px; border-radius: 4px; background: var(--surface); border: 1px solid var(--cat); color: var(--ink); }
+.cover .star { position: absolute; right: 12px; top: 10px; color: var(--cat); font-size: 18px; }
+.card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card h3 { font-family: var(--f-display); font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
+.card .meta { font-family: var(--f-mono); font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.card .sum { font-size: 14.5px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 6px; list-style: none; padding-left: 0; margin-bottom: 0; }
+.stack li { font-family: var(--f-mono); font-size: 11.5px; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); }
+.pill { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 1px 7px; border-radius: 4px; border: 1px solid var(--line); }
+.pill.live { border-color: var(--accent); color: var(--accent); }
+.empty { border: 1px dashed var(--line); border-radius: 12px; padding: 36px 24px; text-align: center; color: var(--muted); }
+.empty b { display: block; color: var(--ink); font-family: var(--f-display); font-size: 1.15rem; margin-bottom: 6px; }
+.add-card { border: 1px dashed var(--accent); border-radius: 12px; background: transparent; color: var(--accent); min-height: 200px; cursor: pointer; display: grid; place-items: center; font-weight: 600; font-size: 15px; }
+.add-card:hover { background: var(--accent-soft); }
+.owner-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 12px 16px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent-soft); margin-bottom: 22px; font-size: 14px; }
+.owner-bar p { flex: 1 1 260px; }
+
+/* Parcours */
+.route { list-style: none; margin: 0; padding: 0; position: relative; }
+.route::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; background: repeating-linear-gradient(var(--accent) 0 6px, transparent 6px 11px); }
+.stop { position: relative; padding-left: 40px; padding-bottom: 36px; }
+.stop:last-child { padding-bottom: 0; }
+.stop::before { content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.stop.now::before { background: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+.stop .meta { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 16px; font-variant-numeric: tabular-nums; }
+.stop h3 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 700; margin: 6px 0 2px; letter-spacing: -.01em; }
+.org { font-weight: 500; color: var(--accent); }
+.stop .desc { margin-top: 10px; max-width: 64ch; }
+.stop ul { margin: 10px 0 0; padding-left: 18px; max-width: 64ch; }
+.stop ul li { margin-bottom: 4px; }
+.stop ul li::marker { color: var(--accent); }
+.tag { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--ink); }
+.edu-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 20px; padding-block: 15px; border-top: 1px solid var(--line); }
+.edu-row:last-child { border-bottom: 1px solid var(--line); }
+.edu-row .yr { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.edu-row strong { font-family: var(--f-display); font-size: 1.08rem; font-weight: 700; display: block; }
+.edu-row span { color: var(--muted); font-size: 15px; }
+@media (max-width: 480px) { .edu-row { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+/* Compétences */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }
+.skills h3 { font: 600 13px var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.chips li { font-size: 14px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.chips button { font-size: 14px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); cursor: pointer; }
+.chips button:hover { border-color: var(--accent); color: var(--accent); }
+.chips button sup { font-family: var(--f-mono); font-size: 10px; color: var(--accent); margin-left: 3px; }
+.hint { font-size: 13.5px; color: var(--muted); margin-bottom: 18px; }
+.certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.cert { border: 1px solid var(--line); border-radius: 10px; padding: 18px; background: var(--surface); }
+.cert small { font-family: var(--f-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.cert strong { display: block; font-family: var(--f-display); font-weight: 700; font-size: 1.05rem; margin-top: 6px; line-height: 1.3; }
+.langs { display: grid; gap: 10px; max-width: 420px; }
+
+/* Contact */
+.contact { display: grid; gap: 12px; max-width: 580px; }
+.c-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.c-row .k { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); width: 90px; }
+.c-row .v { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; font-weight: 500; }
+.c-row .v.sel { user-select: all; }
+.small-btn { font: 500 13px var(--f-body); padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+.msg-box { margin-top: 28px; max-width: 580px; border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: var(--surface); display: grid; gap: 12px; }
+.msg-box h3 { font-family: var(--f-display); font-size: 1.15rem; }
+footer { padding-block: 28px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* Formulaires */
+.field { display: grid; gap: 5px; }
+.field label { font-size: 13px; font-weight: 600; }
+.field small { font-size: 12.5px; color: var(--muted); font-weight: 400; }
+.field input, .field select, .field textarea { width: 100%; padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 15px var(--f-body); }
+.field textarea { resize: vertical; min-height: 76px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 520px) { .row2 { grid-template-columns: minmax(0, 1fr); } }
+.check { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+
+/* Fenêtre */
+.overlay { position: fixed; inset: 0; z-index: 50; background: var(--overlay); display: flex; align-items: flex-start; justify-content: center; padding: max(16px, env(safe-area-inset-top, 0px)) 16px 16px; overflow-y: auto; }
+.sheet { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; width: 100%; max-width: 720px; margin-block: 24px; overflow: hidden; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.sheet-head h2 { font-family: var(--f-display); font-size: 1.1rem; }
+.sheet-body { padding: 20px; display: grid; gap: 16px; }
+.sheet-foot { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; padding: 14px 18px; border-top: 1px solid var(--line); align-items: center; }
+.sheet-foot .grow { flex: 1; }
+.detail-cover { height: 150px; position: relative; border-bottom: 1px solid var(--line); }
+.detail-cover canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.detail h2.big { font-family: var(--f-display); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; text-wrap: balance; }
+.detail .blk h4 { font: 600 12px var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 6px; }
+.detail .blk p { white-space: pre-line; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.confirm { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--danger); border-radius: 8px; font-size: 14px; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 14px; max-width: calc(100% - 32px); }
+.err { color: var(--danger); font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#accueil">I<span>.</span>B<span>.</span>N</a>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" href="#accueil" data-tab="accueil" data-en="Home">Accueil</a>
+      <a class="tab" href="#projets" data-tab="projets" data-en="Projects">Projets</a>
+      <a class="tab" href="#parcours" data-tab="parcours" data-en="Experience">Parcours</a>
+      <a class="tab" href="#competences" data-tab="competences" data-en="Skills">Compétences</a>
+      <a class="tab" href="#contact" data-tab="contact" data-en="Contact">Contact</a>
+    </nav>
+    <div class="tools">
+      <button class="icon-btn" id="lang-btn" type="button" aria-label="Switch to English">EN</button>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Changer de thème"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ACCUEIL -->
+  <div class="panel" id="p-accueil">
+    <div class="hero">
+      <canvas id="topo" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="coords"><span>48.947° N · 2.040° E</span><span>Île-de-France</span></div>
+        <h1>Irstenn<span class="last">Bakambis Ngongo</span></h1>
+        <ul class="domains" aria-label="Domaines">
+          <li style="--d:var(--c-ia)"><i></i><span data-en="Data &amp; AI">Data &amp; IA</span></li>
+          <li style="--d:var(--c-web)"><i></i><span data-en="Computer Science &amp; IT">Informatique &amp; IT</span></li>
+          <li style="--d:var(--c-auto)"><i></i><span data-en="Digitalisation">Digitalisation</span></li>
+          <li style="--d:var(--c-geo)"><i></i><span data-en="Geomatics">Géomatique</span></li>
+        </ul>
+        <p class="role" data-en="Data scientist and IT profile driving digitalisation: databases, document AI, geomatics and process automation.">Data scientist et profil IT au service de la digitalisation : bases de données, IA documentaire, géomatique et automatisation des processus.</p>
+        <div class="status"><i></i><span data-en="Open to a permanent role from April 2027">Disponible en CDI à partir d’avril 2027</span></div>
+        <div class="cta">
+          <a class="btn" href="#projets" data-en="See my projects">Voir mes projets</a>
+          <a class="btn ghost" href="#contact" data-en="Contact me">Me contacter</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="figures">
+        <div class="fig"><b>5</b><span data-en="professional experiences">expériences professionnelles</span></div>
+        <div class="fig"><b>4</b><span data-en="countries worked in">pays d’exercice</span></div>
+        <div class="fig"><b id="fig-proj">0</b><span data-en="projects documented">projets documentés</span></div>
+        <div class="fig"><b>3</b><span data-en="certifications">certifications</span></div>
+      </div>
+    </div>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Profile">Profil</span><b data-en="About">À propos</b></div>
+        <div>
+          <p class="lead" data-en="I put data to work on concrete business problems: structuring information, automating what can be automated, and helping teams make better decisions.">Je mets la donnée au service de problèmes métiers concrets : structurer l’information, automatiser ce qui peut l’être et aider les équipes à mieux décider.</p>
+          <p class="lead sub" data-en="I am currently an intern at Voies navigables de France (French waterways authority) until March 2027, working on the digitalisation of river public domain management. I am looking for a role in Data Science, Data Analysis, AI, Data/BI, geomatics, automation or digital transformation. My mathematics background, from bachelor’s to a doctorate in computer science, gives me solid foundations for both modelling and analysis.">Actuellement en stage chez Voies navigables de France jusqu’en mars 2027, je travaille à la digitalisation de la gestion du domaine public fluvial. Je recherche un poste en Data Science, Data Analysis, IA, Data/BI, géomatique, automatisation ou transformation digitale. Ma formation en mathématiques, du bachelor au doctorat en informatique, me donne une base solide pour les modèles comme pour l’analyse.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Selection">Sélection</span><b data-en="Featured">À la une</b></div>
+        <div>
+          <div class="grid" id="featured-grid"></div>
+          <p style="margin-top:18px"><a href="#projets" data-en="All projects →">Tous les projets →</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROJETS -->
+  <div class="panel" id="p-projets" hidden>
+    <section>
+      <div class="wrap">
+        <div class="head-row">
+          <div class="label" style="padding-top:0"><span data-en="Work">Réalisations</span><b data-en="Projects">Projets</b></div>
+          <span class="hint" id="proj-count" style="margin:0"></span>
+        </div>
+        <div class="owner-bar" id="owner-bar" hidden>
+          <p data-en="Owner mode: only you see these controls. Add, edit or remove projects; every save updates the page for all visitors.">Mode propriétaire : toi seul vois ces commandes. Ajoute, modifie ou retire des projets ; chaque enregistrement met la page à jour pour tous les visiteurs.</p>
+          <button class="btn accent" id="add-btn" type="button" data-en="+ Add a project">+ Ajouter un projet</button>
+        </div>
+        <div class="proj-tools">
+          <div class="search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <input id="q" type="search" placeholder="Rechercher un projet, une techno…" data-en-ph="Search a project, a technology…" aria-label="Rechercher">
+          </div>
+          <div class="filters" id="filters"></div>
+        </div>
+        <div class="active-tech" id="active-tech" hidden></div>
+        <div class="grid" id="proj-grid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PARCOURS -->
+  <div class="panel" id="p-parcours" hidden>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Path">Parcours</span><b data-en="Experience">Expérience</b></div>
+        <ol class="route">
+          <li class="stop now">
+            <div class="meta"><span data-en="Sep 2026 → Mar 2027">Sept. 2026 → Mars 2027</span><span>Compiègne, France</span><span class="tag" data-en="Current">En cours</span></div>
+            <h3 data-en="Data &amp; Digitalisation Intern">Stagiaire Data &amp; Digitalisation</h3>
+            <div class="org">VNF · Voies navigables de France</div>
+            <p class="desc" data-en="Digitalisation of river public domain management: data, databases, geomatics, business processes, document AI and automation.">Digitalisation de la gestion du domaine public fluvial : données, bases de données, géomatique, processus métiers, IA documentaire et automatisation.</p>
+            <ul>
+              <li data-en="Structuring, managing and using databases">Structuration, gestion et exploitation des bases de données</li>
+              <li data-en="Managing and visualising geolocated data and GIS layers">Gestion et visualisation des données géolocalisées et des couches géomatiques</li>
+              <li data-en="Analysing and formalising business processes (BPM)">Analyse et formalisation des processus métiers dans une démarche BPM</li>
+              <li data-en="Exploring AI solutions to digitise and use scanned PDF documents">Exploration de solutions IA pour numériser et exploiter des PDF issus de scans</li>
+              <li data-en="Turning unstructured documents into usable data">Transformation de documents non structurés en données exploitables</li>
+              <li data-en="Identifying automatable processes and improving the team’s tools">Identification des processus automatisables et amélioration des outils du pôle domaine</li>
+            </ul>
+          </li>
+          <li class="stop">
+            <div class="meta"><span data-en="Jun → Sep 2025">Juin → Sept. 2025</span><span data-en="Brussels, Belgium">Bruxelles, Belgique</span></div>
+            <h3>Data Analyst</h3>
+            <div class="org">Phonecom Belgium</div>
+            <ul>
+              <li data-en="Analysis of telecom and customer service data">Analyse des données issues des activités télécom et du service client</li>
+              <li data-en="KPI dashboards to track performance">Création de dashboards KPI pour le suivi de la performance</li>
+              <li data-en="Exploratory analyses to find optimisation levers">Analyses exploratoires pour identifier des axes d’optimisation</li>
+              <li data-en="Automation of key indicators, in an Agile / Scrum team">Automatisation d’indicateurs clés, en environnement Agile / Scrum</li>
+            </ul>
+          </li>
+          <li class="stop">
+            <div class="meta"><span data-en="Jun → Aug 2023">Juin → Août 2023</span><span data-en="Moscow, Russia">Moscou, Russie</span></div>
+            <h3 data-en="Full Stack Developer">Développeur Full Stack</h3>
+            <div class="org">Teleperformance Global Services</div>
+            <ul>
+              <li data-en="Web application development with Django">Développement d’applications web avec Django</li>
+              <li data-en="Managing and optimising relational databases">Gestion et optimisation de bases de données relationnelles</li>
+              <li data-en="Working with technical teams on data-driven solutions">Collaboration avec les équipes techniques sur des solutions orientées data</li>
+            </ul>
+          </li>
+          <li class="stop">
+            <div class="meta"><span data-en="Jun → Aug 2022">Juin → Août 2022</span><span data-en="Brazzaville, Congo">Brazzaville, Congo</span></div>
+            <h3 data-en="Financial Audit Assistant">Assistant Audit Financier</h3>
+            <div class="org">Banque Congolaise de l’Habitat</div>
+            <ul>
+              <li data-en="Analysis of financial and accounting data">Analyse des données financières et comptables</li>
+              <li data-en="Compliance and data reliability reports">Rapports de conformité et de fiabilité des données</li>
+              <li data-en="Consolidation and reporting in Excel">Consolidation et reporting sous Excel</li>
+            </ul>
+          </li>
+          <li class="stop">
+            <div class="meta"><span data-en="Since Nov 2025">Depuis nov. 2025</span><span>Achères, France</span></div>
+            <h3 data-en="Store Associate">Employé polyvalent</h3>
+            <div class="org">E.Leclerc</div>
+            <p class="desc" data-en="Stock management, customer relations and teamwork, alongside my studies.">Gestion des stocks, relation clients et travail en équipe, en parallèle de mes études.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Degrees">Diplômes</span><b data-en="Education">Formation</b></div>
+        <div>
+          <div class="edu-row"><div class="yr">2025 – 2026</div><div><strong data-en="Master’s 2 in Data">Master 2 Data</strong><span>Paris School of Technology &amp; Business</span></div></div>
+          <div class="edu-row"><div class="yr">2024 – 2025</div><div><strong data-en="Master’s in Advanced Mathematics">Master en Mathématiques approfondies</strong><span>UCLouvain · Université catholique de Louvain</span></div></div>
+          <div class="edu-row"><div class="yr">2021 – 2024</div><div><strong data-en="Doctorate, Computer Science">Doctorat, Computer Science</strong><span>Russian Friendship University</span></div></div>
+          <div class="edu-row"><div class="yr">2019 – 2021</div><div><strong data-en="Master’s in Mathematics and Computer Science">Master en Mathématiques et informatique</strong><span>Ryazan State Radio Engineering University</span></div></div>
+          <div class="edu-row"><div class="yr">2015 – 2019</div><div><strong data-en="Bachelor’s in Mathematics and Computer Science">Bachelor en Mathématiques et informatique</strong><span>Ryazan State Radio Engineering University</span></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- COMPETENCES -->
+  <div class="panel" id="p-competences" hidden>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Toolbox">Boîte à outils</span><b data-en="Skills">Compétences</b></div>
+        <div>
+          <p class="hint" data-en="Click a skill to see the projects that use it.">Clique sur une compétence pour voir les projets qui l’utilisent.</p>
+          <div class="skills">
+            <div><h3 data-en="Data &amp; AI">Data &amp; IA</h3><ul class="chips" data-skills="Data Science|Data Analysis|Machine Learning|Deep Learning|Computer Vision|IA documentaire|OCR"></ul></div>
+            <div><h3 data-en="Technical">Technique</h3><ul class="chips" data-skills="Python|SQL|Bases de données|Django|Excel|Dashboards KPI"></ul></div>
+            <div><h3 data-en="Business &amp; method">Métier &amp; méthode</h3><ul class="chips" data-skills="Géomatique|SIG|BPM|Automatisation|Transformation digitale|Agile / Scrum"></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Validated">Validé</span><b>Certifications</b></div>
+        <div class="certs">
+          <div class="cert"><small>Microsoft</small><strong>Azure Data Scientist Associate</strong></div>
+          <div class="cert"><small>Machine Learning</small><strong>ML Practitioner Certificate</strong></div>
+          <div class="cert"><small>Design</small><strong>Core Designer Certificate</strong></div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Soft skills">Savoir-être</span><b data-en="Strengths">Atouts</b></div>
+        <ul class="chips">
+          <li data-en="Teamwork">Travail d’équipe</li>
+          <li data-en="International experience (France, Belgium, Russia, Congo)">Expérience internationale (France, Belgique, Russie, Congo)</li>
+          <li data-en="Business process analysis">Analyse des besoins métiers</li>
+          <li data-en="Strong mathematical rigour">Rigueur mathématique</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="panel" id="p-contact" hidden>
+    <section>
+      <div class="wrap sec">
+        <div class="label"><span data-en="Let’s talk">Échangeons</span><b>Contact</b></div>
+        <div>
+          <p class="lead" style="margin-bottom:22px" data-en="Recruiters and Data &amp; Digital professionals: I’m happy to talk. Available for a permanent role from April 2027.">Recruteurs et professionnels Data &amp; Digital : je suis ouvert à un échange. Disponible en CDI à partir d’avril 2027.</p>
+          <div class="contact">
+            <div class="c-row"><span class="k">E-mail</span><span class="v sel" id="mail">irstennbam@gmail.com</span><button class="small-btn" type="button" data-copy="mail" data-en="Copy">Copier</button></div>
+            <div class="c-row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/irstennbakambis-ngongo-52076738a" target="_blank" rel="noopener">irstennbakambis-ngongo ↗</a></span></div>
+            <div class="c-row"><span class="k" data-en="Based in">Basé à</span><span class="v" data-en="Carrières-sous-Poissy, Île-de-France (Paris area)">Carrières-sous-Poissy, Île-de-France</span></div>
+            <div class="c-row"><span class="k" data-en="Contract">Contrat</span><span class="v" data-en="Permanent role (CDI) · from April 2027">CDI · à partir d’avril 2027</span></div>
+          </div>
+          <form class="msg-box" id="msg-form">
+            <h3 data-en="Prepare a message">Préparer un message</h3>
+            <p class="hint" style="margin:0" data-en="Write your message here, then copy it and send it by e-mail or LinkedIn.">Rédige ton message ici, puis copie-le pour l’envoyer par e-mail ou sur LinkedIn.</p>
+            <div class="row2">
+              <div class="field"><label for="m-name" data-en="Your name">Votre nom</label><input id="m-name" autocomplete="name"></div>
+              <div class="field"><label for="m-co" data-en="Company">Entreprise</label><input id="m-co" autocomplete="organization"></div>
+            </div>
+            <div class="field"><label for="m-body">Message</label><textarea id="m-body" rows="4"></textarea></div>
+            <div><button class="btn" type="submit" data-en="Copy the message">Copier le message</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap">© 2026 Irstenn Bakambis Ngongo · Data &amp; IA · Informatique &amp; IT · Digitalisation · Géomatique</div></footer>
+
+<div id="modal-root"></div>
+<div class="toast" id="toast" hidden></div>
+
+<script type="application/json" id="pf-data">{"projects": [{"id": "vnf-ia-doc", "title": "Numérisation intelligente des documents scannés", "cat": "ia", "year": "2026", "org": "VNF", "status": "live", "summary": "Exploration de solutions d’IA pour transformer des PDF issus de scans en données structurées et exploitables par le pôle domaine.", "context": "Une grande partie des informations du domaine public fluvial est conservée dans des documents scannés, difficiles à rechercher et à exploiter.", "approach": "Exploration de solutions d’IA documentaire pour extraire l’information des PDF scannés et la convertir en données structurées.", "results": "Projet en cours : résultats à compléter.", "stack": ["Python", "IA documentaire", "OCR"], "links": [], "featured": true, "draft": false}, {"id": "vnf-geo", "title": "Données géolocalisées du domaine public fluvial", "cat": "geo", "year": "2026", "org": "VNF", "status": "live", "summary": "Structuration des bases de données et visualisation des couches géomatiques pour la gestion du domaine public fluvial.", "context": "La gestion du domaine fluvial s’appuie sur des données géolocalisées dispersées entre plusieurs sources.", "approach": "Structuration et gestion des bases de données, intégration et visualisation des couches géomatiques, analyse des processus métiers (BPM) pour repérer ce qui peut être automatisé.", "results": "Projet en cours : résultats à compléter.", "stack": ["Géomatique", "SIG", "Bases de données", "BPM"], "links": [], "featured": true, "draft": false}, {"id": "phonecom-kpi", "title": "Dashboards KPI télécom et service client", "cat": "data", "year": "2025", "org": "Phonecom Belgium", "status": "done", "summary": "Tableaux de bord de suivi de la performance et indicateurs automatisés à partir des données télécom et service client.", "context": "L’équipe avait besoin de suivre la performance des activités télécom et du service client de façon régulière et fiable.", "approach": "Analyse technique et exploratoire des données, création de dashboards KPI et automatisation des indicateurs clés, en méthode Agile / Scrum.", "results": "Indicateurs clés automatisés et axes d’optimisation identifiés. À compléter avec des chiffres.", "stack": ["Python", "SQL", "Dashboards KPI", "Data Analysis", "Agile / Scrum"], "links": [], "featured": false, "draft": false}, {"id": "tp-django", "title": "Applications web orientées data avec Django", "cat": "web", "year": "2023", "org": "Teleperformance", "status": "done", "summary": "Développement d’applications web Django adossées à des bases de données relationnelles optimisées.", "context": "Des équipes techniques avaient besoin d’outils web pour exploiter leurs données.", "approach": "Développement full stack avec Django, conception et optimisation de bases de données relationnelles.", "results": "À compléter.", "stack": ["Python", "Django", "SQL", "Bases de données"], "links": [], "featured": false, "draft": false}]}</script>
+<script>
+var PF_SRC = "";
+(function () {
+  "use strict";
+  var DATA = { projects: [] };
+  try { DATA = JSON.parse(document.getElementById("pf-data").textContent); } catch (e) {}
+  if (!DATA.projects) DATA.projects = [];
+
+  var CATS = [
+    { id: "ia", fr: "IA & Deep Learning", en: "AI & Deep Learning", v: "--c-ia" },
+    { id: "data", fr: "Data Analysis & BI", en: "Data Analysis & BI", v: "--c-data" },
+    { id: "geo", fr: "Géomatique", en: "Geomatics", v: "--c-geo" },
+    { id: "auto", fr: "Automatisation & BPM", en: "Automation & BPM", v: "--c-auto" },
+    { id: "web", fr: "Développement web", en: "Web development", v: "--c-web" }
+  ];
+  var catOf = function (id) { return CATS.find(function (c) { return c.id === id; }) || CATS[1]; };
+  var state = { lang: "fr", cat: "all", q: "", tech: null, owner: false, artifact: null };
+  try { state.lang = localStorage.getItem("pf-lang") || "fr"; } catch (e) {}
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var T = function (fr, en) { return state.lang === "en" ? en : fr; };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function toast(msg) {
+    var t = $("#toast"); t.textContent = msg; t.hidden = false;
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+  function copyText(txt, el) {
+    function ok() { toast(T("Copié dans le presse-papiers", "Copied to clipboard")); }
+    function fallback() { if (el) { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } toast(T("Texte sélectionné, copie-le avec Ctrl+C", "Text selected, copy it with Ctrl+C")); }
+    try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch (e) { fallback(); }
+  }
+
+  /* ---------- Courbes de niveau ---------- */
+  function hash(x, y, s) { var h = Math.sin(x * 127.1 + y * 311.7 + s * 74.7) * 43758.5453; return h - Math.floor(h); }
+  function noise(x, y, s) {
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    var u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+    var a = hash(xi, yi, s), b = hash(xi + 1, yi, s), c = hash(xi, yi + 1, s), d = hash(xi + 1, yi + 1, s);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  }
+  function drawTopo(canvas, opts) {
+    var w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), ctx = canvas.getContext("2d");
+    canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    var s = opts.seed || 0, sc = 1 / (opts.scale || 170), step = opts.step || 10;
+    ctx.strokeStyle = opts.color; ctx.lineWidth = 1; ctx.globalAlpha = opts.alpha || 1;
+    var cols = Math.ceil(w / step) + 1, rows = Math.ceil(h / step) + 1, g = [];
+    for (var j = 0; j < rows; j++) { g[j] = []; for (var i = 0; i < cols; i++) { var X = i * step * sc, Y = j * step * sc; g[j][i] = noise(X, Y, s) * .6 + noise(X * 2.1 + 5, Y * 2.1, s) * .3 + noise(X * 4.3, Y * 4.3 + 9, s) * .1; } }
+    for (var lv = 0.18; lv < 0.9; lv += (opts.gap || 0.045)) {
+      ctx.beginPath();
+      for (var y2 = 0; y2 < rows - 1; y2++) for (var x2 = 0; x2 < cols - 1; x2++) {
+        var a = g[y2][x2], b = g[y2][x2 + 1], c = g[y2 + 1][x2 + 1], d = g[y2 + 1][x2], x = x2 * step, y = y2 * step, p = [];
+        if ((a < lv) !== (b < lv)) p.push([x + step * (lv - a) / (b - a), y]);
+        if ((b < lv) !== (c < lv)) p.push([x + step, y + step * (lv - b) / (c - b)]);
+        if ((d < lv) !== (c < lv)) p.push([x + step * (lv - d) / (c - d), y + step]);
+        if ((a < lv) !== (d < lv)) p.push([x, y + step * (lv - a) / (d - a)]);
+        if (p.length >= 2) { ctx.moveTo(p[0][0], p[0][1]); ctx.lineTo(p[1][0], p[1][1]); }
+        if (p.length === 4) { ctx.moveTo(p[2][0], p[2][1]); ctx.lineTo(p[3][0], p[3][1]); }
+      }
+      ctx.stroke();
+    }
+  }
+  function seedOf(str) { var h = 0; for (var i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 9973; return h / 37; }
+  function drawAll() {
+    var hero = $("#topo"); if (hero && hero.offsetParent) drawTopo(hero, { color: css("--contour") });
+    $$("canvas[data-seed]").forEach(function (c) { if (c.offsetParent) drawTopo(c, { color: css(c.dataset.color), alpha: .55, seed: +c.dataset.seed, scale: 90, step: 6, gap: .06 }); });
+  }
+
+  /* ---------- Langue ---------- */
+  function applyLang() {
+    document.documentElement.lang = state.lang;
+    $$("[data-en]").forEach(function (el) {
+      if (el.dataset.fr == null) el.dataset.fr = el.textContent;
+      el.textContent = state.lang === "en" ? el.dataset.en : el.dataset.fr;
+    });
+    $$("[data-en-ph]").forEach(function (el) {
+      if (el.dataset.frPh == null) el.dataset.frPh = el.placeholder;
+      el.placeholder = state.lang === "en" ? el.dataset.enPh : el.dataset.frPh;
+    });
+    var lb = $("#lang-btn"); lb.textContent = state.lang === "en" ? "FR" : "EN";
+    lb.setAttribute("aria-label", state.lang === "en" ? "Passer en français" : "Switch to English");
+    renderSkills(); renderProjects();
+  }
+  $("#lang-btn").addEventListener("click", function () {
+    state.lang = state.lang === "en" ? "fr" : "en";
+    try { localStorage.setItem("pf-lang", state.lang); } catch (e) {}
+    applyLang();
+  });
+
+  /* ---------- Thème ---------- */
+  var themes = ["system", "light", "dark"], theme = "system";
+  try { theme = localStorage.getItem("pf-theme") || "system"; } catch (e) {}
+  function applyTheme() {
+    if (theme === "system") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", theme);
+    $("#theme-btn").title = T("Thème : ", "Theme: ") + { system: T("système", "system"), light: T("clair", "light"), dark: T("sombre", "dark") }[theme];
+    requestAnimationFrame(drawAll);
+  }
+  $("#theme-btn").addEventListener("click", function () {
+    theme = themes[(themes.indexOf(theme) + 1) % 3];
+    try { localStorage.setItem("pf-theme", theme); } catch (e) {}
+    applyTheme(); toast($("#theme-btn").title);
+  });
+  try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll); } catch (e) {}
+
+  /* ---------- Onglets ---------- */
+  var TABS = ["accueil", "projets", "parcours", "competences", "contact"];
+  function showTab() {
+    var id = (location.hash || "").replace("#", "");
+    if (TABS.indexOf(id) < 0) id = "accueil";
+    TABS.forEach(function (t) { $("#p-" + t).hidden = t !== id; });
+    $$(".tab").forEach(function (a) { if (a.dataset.tab === id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    var cur = $('.tab[data-tab="' + id + '"]'); if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({ block: "nearest", inline: "nearest" }); } catch (e) {} }
+    requestAnimationFrame(drawAll);
+  }
+  window.addEventListener("hashchange", function () { showTab(); window.scrollTo(0, 0); });
+
+  /* ---------- Projets ---------- */
+  function visibleProjects() { return DATA.projects.filter(function (p) { return state.owner || !p.draft; }); }
+  function matches(p) {
+    if (state.cat !== "all" && p.cat !== state.cat) return false;
+    if (state.tech && !(p.stack || []).some(function (s) { return s.toLowerCase() === state.tech.toLowerCase(); })) return false;
+    if (state.q) {
+      var hay = [p.title, p.summary, p.org, p.context, p.approach, p.results, (p.stack || []).join(" ")].join(" ").toLowerCase();
+      if (hay.indexOf(state.q.toLowerCase()) < 0) return false;
+    }
+    return true;
+  }
+  function sorted(list) {
+    return list.slice().sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || String(b.year).localeCompare(String(a.year)); });
+  }
+  function cardHTML(p) {
+    var c = catOf(p.cat);
+    return '<button type="button" class="card' + (p.draft ? " draft" : "") + '" data-open="' + esc(p.id) + '" style="--cat:var(' + c.v + ')">' +
+      '<div class="cover"><canvas data-seed="' + seedOf(p.id) + '" data-color="' + c.v + '"></canvas><span class="cat">' + esc(T(c.fr, c.en)) + '</span>' + (p.featured ? '<span class="star" title="' + T("À la une", "Featured") + '">★</span>' : "") + '</div>' +
+      '<div class="card-body"><div class="meta"><span>' + esc(p.year) + '</span>' + (p.org ? '<span>' + esc(p.org) + '</span>' : "") +
+      (p.status === "live" ? '<span class="pill live">' + T("En cours", "Ongoing") + '</span>' : "") + (p.draft ? '<span class="pill">' + T("Brouillon", "Draft") + '</span>' : "") + '</div>' +
+      '<h3>' + esc(p.title) + '</h3><p class="sum">' + esc(p.summary) + '</p>' +
+      '<ul class="stack">' + (p.stack || []).slice(0, 5).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join("") + '</ul></div></button>';
+  }
+  function renderFilters() {
+    var vis = visibleProjects();
+    var html = '<button type="button" class="chip-btn" data-cat="all" aria-pressed="' + (state.cat === "all") + '">' + T("Tous", "All") + ' · ' + vis.length + '</button>';
+    CATS.forEach(function (c) {
+      var n = vis.filter(function (p) { return p.cat === c.id; }).length; if (!n) return;
+      html += '<button type="button" class="chip-btn" data-cat="' + c.id + '" style="--cat:var(' + c.v + ')" aria-pressed="' + (state.cat === c.id) + '"><i></i>' + esc(T(c.fr, c.en)) + ' · ' + n + '</button>';
+    });
+    $("#filters").innerHTML = html;
+  }
+  function renderProjects() {
+    var vis = visibleProjects();
+    $("#fig-proj").textContent = DATA.projects.filter(function (p) { return !p.draft; }).length;
+    renderFilters();
+    var at = $("#active-tech");
+    if (state.tech) { at.hidden = false; at.innerHTML = T("Filtré par compétence : ", "Filtered by skill: ") + '<span class="tag">' + esc(state.tech) + '</span><button type="button" class="link-btn" id="clear-tech">' + T("Retirer", "Clear") + '</button>'; }
+    else at.hidden = true;
+    var list = sorted(vis.filter(matches));
+    var grid = $("#proj-grid"), html = "";
+    if (state.owner) html += '<button type="button" class="add-card" data-add>+ ' + T("Ajouter un projet", "Add a project") + '</button>';
+    html += list.map(cardHTML).join("");
+    if (!list.length && !state.owner) html = '<div class="empty" style="grid-column:1/-1"><b>' + (vis.length ? T("Aucun projet ne correspond", "No matching project") : T("Projets à venir", "Projects coming soon")) + '</b>' + (vis.length ? T("Essaie un autre mot-clé ou retire les filtres.", "Try another keyword or clear the filters.") : T("Les réalisations seront bientôt publiées ici.", "Work will be published here soon.")) + '</div>';
+    grid.innerHTML = html;
+    $("#proj-count").textContent = list.length + " / " + vis.length + " " + T("projets affichés", "projects shown");
+    var feat = sorted(vis.filter(function (p) { return !p.draft; })).slice(0, 2);
+    $("#featured-grid").innerHTML = feat.length ? feat.map(cardHTML).join("") : '<div class="empty" style="grid-column:1/-1"><b>' + T("Projets à venir", "Projects coming soon") + '</b></div>';
+    requestAnimationFrame(drawAll);
+  }
+  $("#filters").addEventListener("click", function (e) { var b = e.target.closest("[data-cat]"); if (!b) return; state.cat = b.dataset.cat; renderProjects(); });
+  $("#q").addEventListener("input", function (e) { state.q = e.target.value.trim(); renderProjects(); });
+  $("#active-tech").addEventListener("click", function (e) { if (e.target.id === "clear-tech") { state.tech = null; renderProjects(); } });
+  document.addEventListener("click", function (e) {
+    var o = e.target.closest("[data-open]"); if (o) { openDetail(o.dataset.open); return; }
+    if (e.target.closest("[data-add]")) { openEditor(null); return; }
+    var cp = e.target.closest("[data-copy]"); if (cp) { var el = document.getElementById(cp.dataset.copy); copyText(el.textContent.trim(), el); }
+  });
+
+  /* ---------- Compétences ---------- */
+  function renderSkills() {
+    $$("[data-skills]").forEach(function (ul) {
+      ul.innerHTML = ul.dataset.skills.split("|").map(function (s) {
+        var n = DATA.projects.filter(function (p) { return !p.draft && (p.stack || []).some(function (x) { return x.toLowerCase() === s.toLowerCase(); }); }).length;
+        return '<li style="border:0;padding:0;background:none"><button type="button" data-skill="' + esc(s) + '">' + esc(s) + (n ? '<sup>' + n + '</sup>' : "") + '</button></li>';
+      }).join("");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-skill]"); if (!b) return;
+    state.tech = b.dataset.skill; state.cat = "all"; state.q = ""; $("#q").value = "";
+    location.hash = "projets"; renderProjects();
+  });
+
+  /* ---------- Fenêtres ---------- */
+  var lastFocus = null;
+  function openModal(html, label) {
+    lastFocus = document.activeElement;
+    $("#modal-root").innerHTML = '<div class="overlay" data-close-bg><div class="sheet" role="dialog" aria-modal="true" aria-label="' + esc(label) + '">' + html + '</div></div>';
+    document.body.style.overflow = "hidden";
+    var f = $("#modal-root [data-autofocus]") || $("#modal-root button"); if (f) f.focus();
+    requestAnimationFrame(drawAll);
+  }
+  function closeModal() { $("#modal-root").innerHTML = ""; document.body.style.overflow = ""; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  $("#modal-root").addEventListener("click", function (e) {
+    if (e.target.hasAttribute("data-close-bg") || e.target.closest("[data-close]")) closeModal();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("#modal-root").firstChild) closeModal(); });
+
+  function openDetail(id) {
+    var p = DATA.projects.find(function (x) { return x.id === id; }); if (!p) return;
+    var c = catOf(p.cat);
+    var blk = function (fr, en, txt) { return txt ? '<div class="blk"><h4>' + T(fr, en) + '</h4><p>' + esc(txt) + '</p></div>' : ""; };
+    var links = (p.links || []).filter(function (l) { return /^https:\/\//.test(l.url); });
+    openModal(
+      '<div class="detail-cover" style="--cat:var(' + c.v + ')"><canvas data-seed="' + seedOf(p.id) + '" data-color="' + c.v + '"></canvas></div>' +
+      '<div class="sheet-head"><span class="tag">' + esc(T(c.fr, c.en)) + '</span><button type="button" class="icon-btn" data-close aria-label="' + T("Fermer", "Close") + '">✕</button></div>' +
+      '<div class="sheet-body detail"><div class="meta" style="font-family:var(--f-mono);font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px"><span>' + esc(p.year) + '</span>' + (p.org ? '<span>' + esc(p.org) + '</span>' : "") + (p.status === "live" ? '<span class="pill live">' + T("En cours", "Ongoing") + '</span>' : '<span class="pill">' + T("Terminé", "Completed") + '</span>') + '</div>' +
+      '<h2 class="big">' + esc(p.title) + '</h2><p class="lead">' + esc(p.summary) + '</p>' +
+      blk("Contexte et enjeu", "Context and challenge", p.context) + blk("Démarche et solution", "Approach and solution", p.approach) + blk("Résultats et impact", "Results and impact", p.results) +
+      ((p.stack || []).length ? '<div class="blk"><h4>' + T("Technologies", "Technologies") + '</h4><ul class="stack">' + p.stack.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join("") + '</ul></div>' : "") +
+      (links.length ? '<div class="links">' + links.map(function (l) { return '<a class="btn ghost" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label || l.url) + ' ↗</a>'; }).join("") + '</div>' : "") +
+      '</div>' + (state.owner ? '<div class="sheet-foot"><button type="button" class="btn" data-edit="' + esc(p.id) + '">' + T("Modifier ce projet", "Edit this project") + '</button></div>' : ""),
+      p.title);
+  }
+  $("#modal-root").addEventListener("click", function (e) { var b = e.target.closest("[data-edit]"); if (b) openEditor(b.dataset.edit); });
+
+  /* ---------- Édition (propriétaire) ---------- */
+  function openEditor(id) {
+    var p = id ? DATA.projects.find(function (x) { return x.id === id; }) : null;
+    var v = p || { title: "", cat: "data", year: String(new Date().getFullYear()), org: "", summary: "", context: "", approach: "", results: "", stack: [], links: [], featured: false, status: "done", draft: false };
+    var opt = CATS.map(function (c) { return '<option value="' + c.id + '"' + (v.cat === c.id ? " selected" : "") + '>' + esc(c.fr) + '</option>'; }).join("");
+    var links = (v.links || []).map(function (l) { return (l.label ? l.label + " | " : "") + l.url; }).join("\n");
+    openModal(
+      '<form id="ed-form" novalidate><div class="sheet-head"><h2>' + (p ? "Modifier le projet" : "Nouveau projet") + '</h2><button type="button" class="icon-btn" data-close aria-label="Fermer">✕</button></div>' +
+      '<div class="sheet-body">' +
+      '<div class="field"><label for="ed-title">Titre du projet *</label><input id="ed-title" required maxlength="90" value="' + esc(v.title) + '" data-autofocus></div>' +
+      '<div class="row2"><div class="field"><label for="ed-cat">Catégorie</label><select id="ed-cat">' + opt + '</select></div>' +
+      '<div class="field"><label for="ed-year">Année</label><input id="ed-year" maxlength="12" value="' + esc(v.year) + '" placeholder="2026"></div></div>' +
+      '<div class="row2"><div class="field"><label for="ed-org">Cadre <small>(entreprise, école, perso)</small></label><input id="ed-org" maxlength="60" value="' + esc(v.org) + '"></div>' +
+      '<div class="field"><label for="ed-status">Statut</label><select id="ed-status"><option value="done"' + (v.status !== "live" ? " selected" : "") + '>Terminé</option><option value="live"' + (v.status === "live" ? " selected" : "") + '>En cours</option></select></div></div>' +
+      '<div class="field"><label for="ed-summary">Résumé * <small>(1 à 2 phrases, visible sur la carte)</small></label><textarea id="ed-summary" maxlength="280" rows="2">' + esc(v.summary) + '</textarea></div>' +
+      '<div class="field"><label for="ed-context">Contexte et enjeu <small>(quel problème métier ?)</small></label><textarea id="ed-context" rows="3">' + esc(v.context) + '</textarea></div>' +
+      '<div class="field"><label for="ed-approach">Démarche et solution <small>(données, méthodes, modèles)</small></label><textarea id="ed-approach" rows="3">' + esc(v.approach) + '</textarea></div>' +
+      '<div class="field"><label for="ed-results">Résultats et impact <small>(chiffres si possible : temps gagné, précision…)</small></label><textarea id="ed-results" rows="3">' + esc(v.results) + '</textarea></div>' +
+      '<div class="field"><label for="ed-stack">Technologies <small>(séparées par des virgules)</small></label><input id="ed-stack" value="' + esc((v.stack || []).join(", ")) + '" placeholder="Python, SQL, Power BI"></div>' +
+      '<div class="field"><label for="ed-links">Liens <small>(un par ligne, format : Libellé | https://…)</small></label><textarea id="ed-links" rows="2" placeholder="GitHub | https://github.com/…">' + esc(links) + '</textarea></div>' +
+      '<label class="check"><input type="checkbox" id="ed-featured"' + (v.featured ? " checked" : "") + '> Mettre à la une (affiché en premier et sur l’accueil)</label>' +
+      '<label class="check"><input type="checkbox" id="ed-draft"' + (v.draft ? " checked" : "") + '> Brouillon (masqué aux visiteurs)</label>' +
+      '<p class="err" id="ed-err" hidden></p><div id="ed-confirm"></div>' +
+      '</div><div class="sheet-foot">' + (p ? '<button type="button" class="btn danger" id="ed-del">Supprimer</button>' : "") + '<span class="grow"></span>' +
+      '<button type="button" class="btn ghost" data-close>Annuler</button><button type="submit" class="btn accent" id="ed-save">Enregistrer</button></div></form>',
+      p ? "Modifier le projet" : "Nouveau projet");
+
+    $("#ed-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = $("#ed-err"), title = $("#ed-title").value.trim(), summary = $("#ed-summary").value.trim();
+      if (!title || !summary) { err.hidden = false; err.textContent = "Ajoute au moins un titre et un résumé."; return; }
+      var badLink = null;
+      var lks = $("#ed-links").value.split("\n").map(function (l) { return l.trim(); }).filter(Boolean).map(function (l) {
+        var parts = l.split("|"), url = parts.pop().trim(), label = parts.join("|").trim();
+        if (/^http:\/\//.test(url)) url = "https://" + url.slice(7);
+        if (!/^https:\/\/\S+$/.test(url)) badLink = l;
+        return { label: label, url: url };
+      });
+      if (badLink) { err.hidden = false; err.textContent = "Ce lien n’est pas valide : « " + badLink + " ». Il doit commencer par https://"; return; }
+      var np = {
+        id: p ? p.id : "p" + Date.now().toString(36), title: title, cat: $("#ed-cat").value, year: $("#ed-year").value.trim(),
+        org: $("#ed-org").value.trim(), status: $("#ed-status").value, summary: summary, context: $("#ed-context").value.trim(),
+        approach: $("#ed-approach").value.trim(), results: $("#ed-results").value.trim(),
+        stack: $("#ed-stack").value.split(",").map(function (s) { return s.trim(); }).filter(Boolean),
+        links: lks, featured: $("#ed-featured").checked, draft: $("#ed-draft").checked
+      };
+      var next = DATA.projects.slice();
+      if (p) next[next.indexOf(p)] = np; else next.unshift(np);
+      save(next, p ? "Projet mis à jour" : "Projet ajouté");
+    });
+    var del = $("#ed-del");
+    if (del) del.addEventListener("click", function () {
+      $("#ed-confirm").innerHTML = '<div class="confirm"><span style="flex:1">Supprimer définitivement « ' + esc(p.title) + ' » ?</span><button type="button" class="btn ghost" id="ed-no">Garder</button><button type="button" class="btn danger" id="ed-yes">Supprimer</button></div>';
+      $("#ed-no").onclick = function () { $("#ed-confirm").innerHTML = ""; };
+      $("#ed-yes").onclick = function () { save(DATA.projects.filter(function (x) { return x !== p; }), "Projet supprimé"); };
+    });
+  }
+
+  var RESET_FALLBACK = ":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
+  function jsonForScript(x) { return JSON.stringify(x).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029"); }
+  function buildDocument(data) {
+    var M_DATA = "__" + "DATA__", M_SRC = "__" + "SRC__";
+    var body = PF_SRC.replace(M_DATA, function () { return jsonForScript(data); }).replace(M_SRC, function () { return jsonForScript(PF_SRC); });
+    var reset = RESET_FALLBACK;
+    try { var st = document.head.querySelector("style"); if (st && /safe-area-inset/.test(st.textContent)) reset = st.textContent; } catch (e) {}
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + reset + '</style></head><body>' + body + '</body></html>';
+  }
+  function save(projects, okMsg) {
+    var btns = $$("#ed-form button"); btns.forEach(function (b) { b.disabled = true; });
+    var sv = $("#ed-save"); if (sv) sv.textContent = "Enregistrement…";
+    var err = $("#ed-err");
+    try { sessionStorage.setItem("pf-toast", okMsg); sessionStorage.setItem("pf-tab", "projets"); } catch (e) {}
+    state.artifact.publish(buildDocument({ projects: projects })).then(function () {
+      toast(okMsg + " · la page se recharge");
+    }, function (e) {
+      try { sessionStorage.removeItem("pf-toast"); } catch (x) {}
+      btns.forEach(function (b) { b.disabled = false; }); if (sv) sv.textContent = "Enregistrer";
+      var code = e && e.code;
+      var msg = {
+        conflict: "Une version plus récente vient d’être publiée ; la page se recharge avec elle. Refais ta modification ensuite.",
+        not_writer: "Tu n’as pas les droits de modification sur cette page.", not_granted: "La modification n’est pas autorisée dans cette vue.",
+        too_large: "La page est trop lourde : raccourcis les textes.", rate_limited: "Trop d’enregistrements rapprochés : attends un instant puis réessaie."
+      }[code] || "L’enregistrement a échoué. Réessaie dans un instant.";
+      if (err) { err.hidden = false; err.textContent = msg; }
+      if (code === "not_writer" || code === "not_granted" || code === "not_declared" || code === "capability_disabled") { state.owner = false; $("#owner-bar").hidden = true; }
+    });
+  }
+
+  /* ---------- Message recruteur ---------- */
+  $("#msg-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = $("#m-name").value.trim(), co = $("#m-co").value.trim(), b = $("#m-body").value.trim();
+    if (!b) { toast(T("Écris d’abord un message", "Write a message first")); return; }
+    var txt = T("Bonjour Irstenn,", "Hello Irstenn,") + "\n\n" + b + "\n\n" + (n || "") + (co ? (n ? " · " : "") + co : "");
+    copyText(txt.trim(), $("#m-body"));
+  });
+
+  /* ---------- Démarrage ---------- */
+  try {
+    var t = sessionStorage.getItem("pf-toast"); if (t) { sessionStorage.removeItem("pf-toast"); setTimeout(function () { toast(t); }, 300); }
+    var tb = sessionStorage.getItem("pf-tab"); if (tb && !location.hash) { sessionStorage.removeItem("pf-tab"); location.hash = tb; }
+  } catch (e) {}
+  applyTheme(); applyLang(); showTab();
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
+
+  if (window.claude && window.claude.use) {
+    Promise.all([window.claude.use("artifact"), window.claude.use("user")]).then(function (r) {
+      var art = r[0], user = r[1];
+      if (!art || !user) return;
+      return user.canEdit().then(function (can) {
+        if (!can) return;
+        state.owner = true; state.artifact = art; $("#owner-bar").hidden = false; renderProjects(); renderSkills();
+      });
+    }).catch(function () {});
+  }
+})();
+</script>
+
+</body>
+</html>
